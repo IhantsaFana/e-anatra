@@ -11,16 +11,24 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+# Chargement des variables d'environnement
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5fqj^wv)!$c-@)+fj2p+6%u$fvr9)$&pvb^^9nl-ggp%w!_dm!'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-key-uniquement-pour-dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ia',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
@@ -97,6 +106,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'back.wsgi.application'
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Database
