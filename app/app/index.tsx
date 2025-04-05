@@ -2,11 +2,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet } from 'react-native';
+import SplashScreen from './screens/SplashScreen';
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { Toaster } from 'sonner-native';
-import SplashScreen from './screens/SplashScreen.js';
-import WelcomeScreen from './screens/WelcomeScreen.js';
-import HomeScreen from './screens/HomeScreen.js';
+import WelcomeScreen from './screens/WelcomeScreen';
+import HomeScreen from './screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,9 +30,7 @@ function RootStack() {
     return (
       <SafeAreaProvider style={styles.container}>
       <Toaster />
-        <NavigationContainer>
           <RootStack />
-        </NavigationContainer>
       </SafeAreaProvider>
     );
   }

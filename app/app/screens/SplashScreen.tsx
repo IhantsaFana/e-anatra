@@ -1,8 +1,19 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Animated } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-export default function SplashScreen({ navigation }) {
+// Remplace 'RootStackParamList' par le nom de ton type de navigation si différent
+type RootStackParamList = {
+  Splash: undefined;
+  Welcome: undefined;
+};
+
+type SplashScreenProps = {
+  navigation: StackNavigationProp<RootStackParamList, 'Splash'>;
+};
+
+export default function SplashScreen({ navigation }: SplashScreenProps) {
   const logoScale = new Animated.Value(0);
   const textOpacity = new Animated.Value(0);
 
@@ -18,13 +29,13 @@ export default function SplashScreen({ navigation }) {
         toValue: 1,
         duration: 800,
         useNativeDriver: true,
-      })
+      }),
     ]).start(() => {
       setTimeout(() => {
         navigation.replace('Welcome');
       }, 2000);
     });
-  }, []);
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
